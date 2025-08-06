@@ -465,7 +465,8 @@ ${extractedData.email}`
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen <div className="min-h-screen bg-gradient-to-br from-orange-400 to-white text-gray-800"> text-gray-800">
+    
       <Toaster position="top-right" />
       
       {/* Header */}
