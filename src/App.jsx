@@ -518,7 +518,7 @@ ${extractedData.email}`,
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-400 to-white text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-orange-100 to-white text-gray-800">
       <Toaster position="top-right" />
 
       {/* Header */}
@@ -830,7 +830,7 @@ ${extractedData.email}`,
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-100 py-6 mt-12">
+      <footer className=" py-6 mt-12">
         <div className="container mx-auto px-4 text-center text-gray-600">
           <p>
             © 2025 Email Template Generator. Create professional emails
