@@ -9,6 +9,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Add this script just before the closing </body> -->
+    <script>
+      // Disable right-click
+      document.addEventListener('contextmenu', event => event.preventDefault());
+
+      // Disable specific key combinations
+      document.addEventListener('keydown', function (e) {
+        if (
+          e.key === 'F12' || // F12
+          (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) || // Ctrl+Shift+I/J/C
+          (e.ctrlKey && e.key === 'U') // Ctrl+U
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
   </body>
 </html>
-</antmlAction>
