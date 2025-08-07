@@ -5,24 +5,62 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Template Generator</title>
+    <style>
+      .custom-toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff4444;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 9999;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .custom-toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Add this script just before the closing </body> -->
+    <!-- Custom toast alert and inspector blocking -->
     <script>
+      function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('show'));
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+
       // Disable right-click
-      document.addEventListener('contextmenu', event => event.preventDefault());
+      document.addEventListener('contextmenu', event => {
+        event.preventDefault();
+        showToast("Right-click is disabled!");
+      });
 
       // Disable specific key combinations
       document.addEventListener('keydown', function (e) {
         if (
-          e.key === 'F12' || // F12
-          (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) || // Ctrl+Shift+I/J/C
-          (e.ctrlKey && e.key === 'U') // Ctrl+U
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+          (e.ctrlKey && e.key.toUpperCase() === 'U')
         ) {
           e.preventDefault();
+          showToast("Inspector tools are disabled!");
         }
       });
     </script>
